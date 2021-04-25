@@ -18,10 +18,12 @@
 	.target	"8080"
 
 IAC	.equ	$E3
+VRAMPTR	.equ	$02A5
 
 R0PRINTC	.equ 	$D695
 R0PRINT	.equ 	$DB32
 R0IAC2HEX .equ	$C653
+
 
 .lib
 	IS_DAI = 1

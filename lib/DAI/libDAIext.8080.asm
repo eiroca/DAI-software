@@ -77,10 +77,10 @@
 	call	R0PRINTC
 .endfunction
 
-.function Text_PrintHex2()
+.macro Text_PrintHex2()
 	DAI_printHEXinA()
-.endfunction
+.endmacro
 
-.function Text_PrintHex4()
+.macro Text_PrintHex4()
 	DAI_printHEXinHL()
-.endfunction
+.endmacro
