@@ -29,7 +29,7 @@
 Main	App_Init()
 	Text_Home()
 	Text_Print(Message)
-	App_Exit(1)
+	App_Exit(0)
 
 .segment "Resources"
 Message	Text_MSG("Hello world!")

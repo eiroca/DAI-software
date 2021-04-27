@@ -14,3 +14,6 @@ Utility Software
 
 ### TestMem
 Check DAI memory
+
+### CPUdiag
+CPU diagnostic

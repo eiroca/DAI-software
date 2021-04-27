@@ -22,3 +22,4 @@ IS_CPM	.var	0
 
 APP_MODE	.var	1	; Simple text app
 APP_LOADR	.var	1	; Basic stub to machine code
+APP_SVREG	.var	1	; Save Registers on start

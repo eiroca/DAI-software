@@ -39,6 +39,9 @@ PROGSTART	.var	$0200	;
 	.if APP_LOADR == 1
 	App_HWloader()
 	.endif
+	.if APP_SVREG == 1
+	pushRegs()
+	.endif
 	App_HWinit()
 	.if APP_MODE == 1
 	Text_Init()
@@ -46,6 +49,8 @@ PROGSTART	.var	$0200	;
 .endmacro
 
 .macro App_Exit(status = 0)
-	mvi	A, status
-	App_HWexit()
+	.if APP_SVREG == 1
+	popRegs()
+	.endif
+	App_HWexit(status)
 .endmacro

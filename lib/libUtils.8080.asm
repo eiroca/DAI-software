@@ -100,6 +100,17 @@
 	rlc
 .endmacro
 
+; Compare HL and DE
+; Destroys A
+.macro cmp_DH()
+	mov	A, D
+	xra	H
+	jnz	@Exit
+	mov	A, E
+	xra	L
+@Exit
+.endmacro
+
 ; Check if _is8085;
 ; Z=0 -> 8085 Z=1 -> 8080
 .macro is8085()

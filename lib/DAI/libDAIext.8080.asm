@@ -19,9 +19,10 @@
 
 .lib
 
-.macro App_HWexit()
-	mov	L, A
-	mvi	H, $00
+	APP_SVREG = 1	; Save Registers on start
+
+.macro App_HWexit(status=0)
+	lxi	H, status
 	ret
 .endmacro
 
@@ -30,8 +31,8 @@
 
 .macro App_HWloader()
 ; Basic program to lauch Machine Language Part
-	.byte	$09,$00,$01,$B3,$15,$00,$00,>@start,<@start,$FF ; 1 CALLM #start
-	.byte 	$00,$00
+	.byte	$09,$00,$01,$B3,$15,$00,$00,>@start,<@start,$FF	; 1 CALLM #start
+	.byte 	$00
 @start
 .endmacro
 

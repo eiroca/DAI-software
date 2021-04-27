@@ -41,15 +41,7 @@ Main	App_Init()
 	call	TestMem
 	App_Exit(0)
 
-cmp_DH	mov	a, d
-	xra	h
-	rnz
-	mov	a, e
-	xra	l
-	ret
-
-TestMem	pushRegs()
-	di
+TestMem	di
 	Text_Print(StartMsg)
 	mvi	B, $00
 ; Check memory value in B
@@ -71,7 +63,7 @@ TestMem	pushRegs()
 	Text_PrintHex4()
 	Text_NL()
 	jmp	@End
-@Next	call	cmp_DH
+@Next	cmp_DH()
 	inx	H
 	jnz	@loop
 	mov	A, B
@@ -85,8 +77,7 @@ TestMem	pushRegs()
 	Text_NL()
 	Text_Print(TestOKMsg)
 @End	ei
-	popRegs()
-	RET
+	ret
 
 .data
 WelcmMsg1	Text_MSG("DAI memory checker (2021)")
