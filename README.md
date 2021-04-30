@@ -1,19 +1,10 @@
 # DAI Software
 
-## lib
-Development library
+New software for DAI Personal Computer
 
-## prog
-General programs
-
-### Hello world
-Skeleton program written with new development library
-
-## Utility
-Utility Software
-
-### TestMem
-Check DAI memory
-
-### CPUdiag
-CPU diagnostic
+## Index
+* [General purpose programs](docs/prog.md)
+* [Software utilities](docs/utility.md)
+* [Games](docs/games.md)
+* [Graphic &Sound demos](docs/demo.md)
+* [DAI Software Development](development.md)

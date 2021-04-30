@@ -29,10 +29,14 @@
 .macro App_HWinit()
 .endmacro
 
-.macro App_HWloader()
+LOADER_SIZE = 11
+.macro App_HWloader(hdSz=0)
 ; Basic program to lauch Machine Language Part
 	.byte	$09,$00,$01,$B3,$15,$00,$00,>@start,<@start,$FF	; 1 CALLM #start
 	.byte 	$00
+	.if hdSz>0
+	.ds	hdSz, 0
+	.endif
 @start
 .endmacro
 
@@ -69,6 +73,10 @@
 	DAI_printC(char)
 .endmacro
 
+.macro Text_printMSG_H()
+	DAI_printMSG_H()
+.endmacro
+
 .function Text_PrintHex1()
 	ani	$0F
 	cpi	$0A
@@ -79,9 +87,21 @@
 .endfunction
 
 .macro Text_PrintHex2()
-	DAI_printHEXinA()
+	push	PSW
+	rrc
+	rrc
+	rrc
+	rrc
+	Text_PrintHex1()
+	pop	PSW
+	Text_PrintHex1()
 .endmacro
 
 .macro Text_PrintHex4()
-	DAI_printHEXinHL()
+	push	H
+	mov	A, H
+	Text_PrintHex2()
+	pop	H
+	mov	A, L
+	Text_PrintHex2()
 .endmacro

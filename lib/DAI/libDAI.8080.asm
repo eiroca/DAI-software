@@ -48,6 +48,10 @@ R0IAC2HEX .equ	$C653
 	call	R0PRINT
 .endmacro
 
+.macro DAI_printMSG_H()
+	call	R0PRINT
+.endmacro
+
 .macro DAI_mathRegToIAC()
 	rst	4
 	.byte	$12

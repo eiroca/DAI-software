@@ -35,9 +35,14 @@ PROGSTART	.var	$0200	;
 	.endif
 .endif
 
-.macro App_Init()
+.macro App_Init(hdSz=0)
 	.if APP_LOADR == 1
-	App_HWloader()
+	App_HWloader(hdSz)
+	.endif
+	.if APP_LOADR == 0 && hdSz > 0
+	jmp @Skip
+	.ds hdSz, 0
+@Skip
 	.endif
 	.if APP_SVREG == 1
 	pushRegs()

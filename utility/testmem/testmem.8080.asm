@@ -81,7 +81,7 @@ TestMem	di
 
 .data
 WelcmMsg1	Text_MSG("DAI memory checker (2021)")
-WelcmMsg2	Text_MSG("This program is free under AGPL v3")
+WelcmMsg2	Text_MSG("This program is free software under AGPL v3")
 StartMsg	Text_STR("Checking: ")
 ErrorMsg	Text_STR("Memory Error @#")
 TestOKMsg	Text_MSG("Memory is OK!")
