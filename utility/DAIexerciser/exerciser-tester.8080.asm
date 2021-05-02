@@ -47,10 +47,10 @@
 
 .segment "Resources"
 .if	IS_DAI==1
-okmsg	Text_MSG(" OK ")
+okmsg	Text_MSG(" OK")
 .endif
 .if	IS_CPM==1
-okmsg	Text_MSG("\r")
+okmsg	Text_STR("\r")
 .endif
 ermsg1	Text_STR(" KO CRC:")
 ermsg2	Text_STR(" found:")

@@ -20,11 +20,20 @@
 .lib
 
 ; Exit to CP/M (Warm Boot)
-.macro App_HWexit()
+.macro App_HWexit(status=0)
 	jmp	WBOOT
 .endmacro
 
 .macro App_HWinit()
+.endmacro
+
+LOADER_SIZE = 3
+.macro App_HWloader(hdSz=0)
+	.if hdSz>0
+	jmp	@start
+	.ds	hdSz, 0
+	.endif
+@start
 .endmacro
 
 .macro Text_MSG(message)
@@ -65,6 +74,10 @@
 	mvi	C, 2
 	mvi	E, char
 	call	BDOS
+.endmacro
+
+.macro Text_PrintMSG_H()
+	C_WRITESTR_H()
 .endmacro
 
 ; Print 1 HEX digit in lower nible of A

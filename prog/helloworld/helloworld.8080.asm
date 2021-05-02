@@ -15,9 +15,9 @@
 ; compile with RetroAssembler
 ; Tab Size = 10
 
-	.target	"8080"
-	.format	"prg"
-	.setting "OmitUnusedFunctions", true
+.target	"8080"
+.format	"prg"
+.setting "OmitUnusedFunctions", true
 
 .include "../../lib/libConst.8080.asm"
 .include "../../lib/DAI/libDAI.8080.asm"

@@ -40,8 +40,6 @@ MOVITest	Text_Print(MVITstMsg)
 	.include "cpudiag_MVI.8080.asm"
 	Text_Print(OKMsg)
 
-	jmp Epilogue
-
 ; TEST ARITHMETIC AND LOGIC INSTRUCTIONS
 AritTest	Text_Print(ALUTstMsg)
 	.include "cpudiag_ALU.8080.asm"
