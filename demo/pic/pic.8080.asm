@@ -16,47 +16,44 @@
 ; Tab Size = 10
 
 	.target	"8080"
+	.format	"prg"
+	.setting "OmitUnusedFunctions", true
 
-	.include "libUtils.8080.asm"
-	.include "libDebug.8080.asm"
-	.include "libText.8080.asm"
-	.include "libZx.8080.asm"
+.include "../../lib/libConst.8080.asm"
+.include "../../lib/DAI/libDAI.8080.asm"
+.include "../../lib/DAI/libDAIext.8080.asm"
+.include "../../lib/libApp.8080.asm"
 
-.lib
+.code
+USE_ZX0	.equ	1
 
-PROGSTART	.var	$0200	;
-.if IS_CPM == 1
-	PROGSTART = $0100	; COM start Address
-.endif
+	.org	PROGSTART
 
-.if IS_DAI == 1
-	PROGSTART = $0400
-	.if APP_LOADR == 1
-	PROGSTART = $03EC	; BASIC program start
+Main	App_Init()
+	Text_Home()
+Copy	DAI_mode(6*2)
+	.if USE_ZX0==1
+	lxi	H, IMG_END - 1
+	lxi	B, VRAM_END
+	dzx0_back()
 	.endif
-.endif
-
-.macro App_Init(hdSz=0)
-	.if APP_LOADR == 1
-	App_HWloader(hdSz)
+	.if USE_ZX0==0
+	lxi	H, IMG_END - 1
+	lxi	D, VRAM_END
+	lxi	B, IMG_END - IMG_START
+	_LDDR()
 	.endif
-	.if APP_LOADR == 0 && hdSz > 0
-	jmp @Skip
-	.ds hdSz, 0
-@Skip
-	.endif
-	.if APP_SVREG == 1
-	pushRegs()
-	.endif
-	App_HWinit()
-	.if APP_MODE == 1
+	Text_GetC()
 	Text_Init()
-	.endif
-.endmacro
+	Text_Home()
+	App_Exit(0)
 
-.macro App_Exit(status = 0)
-	.if APP_SVREG == 1
-	popRegs()
+.data
+IMG_START
+	.if USE_ZX0==1
+	.incbin "image.zx0"
 	.endif
-	App_HWexit(status)
-.endmacro
+	.if USE_ZX0==0
+	.incbin "image.bin"
+	.endif
+IMG_END

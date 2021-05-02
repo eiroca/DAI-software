@@ -73,8 +73,12 @@ LOADER_SIZE = 11
 	DAI_printC(char)
 .endmacro
 
-.macro Text_printMSG_H()
+.macro Text_PrintMSG_H()
 	DAI_printMSG_H()
+.endmacro
+
+.macro Text_GetC()
+	DAI_getC()
 .endmacro
 
 .function Text_PrintHex1()
@@ -86,7 +90,7 @@ LOADER_SIZE = 11
 	call	R0PRINTC
 .endfunction
 
-.macro Text_PrintHex2()
+.function Text_PrintHex2()
 	push	PSW
 	rrc
 	rrc
@@ -95,13 +99,13 @@ LOADER_SIZE = 11
 	Text_PrintHex1()
 	pop	PSW
 	Text_PrintHex1()
-.endmacro
+.endfunction
 
-.macro Text_PrintHex4()
+.function Text_PrintHex4()
 	push	H
 	mov	A, H
 	Text_PrintHex2()
 	pop	H
 	mov	A, L
 	Text_PrintHex2()
-.endmacro
+.endfunction

@@ -20,10 +20,15 @@
 IAC	.equ	$E3
 VRAMPTR	.equ	$02A5
 
+OUTC	.equ	$DD60
+CRLF	.equ	$DD5E
+FGETC	.equ	$D6BB
+
 R0PRINTC	.equ 	$D695
 R0PRINT	.equ 	$DB32
 R0IAC2HEX .equ	$C653
 
+VRAM_END	.equ	$BFFF
 
 .lib
 	IS_DAI = 1
@@ -50,6 +55,17 @@ R0IAC2HEX .equ	$C653
 
 .macro DAI_printMSG_H()
 	call	R0PRINT
+.endmacro
+
+.macro DAI_getC(allowBreak=1)
+@KeyLoop	call	FGETC
+	jz	@KeyLoop
+.if allowBreak == 1
+	jnc	@Exit
+	; Break pressed, so move 0 to A
+	mvi	A,$00
+.endif
+@Exit
 .endmacro
 
 .macro DAI_mathRegToIAC()
