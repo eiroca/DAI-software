@@ -25,4 +25,3 @@ cd DAIexerciser
 call compile.bat
 cd ..
 cd ..
-

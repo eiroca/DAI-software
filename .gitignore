@@ -4,3 +4,4 @@
 *.wav
 **/Thumbs.db
 **/bak/*.zx*
+**/metadata.json

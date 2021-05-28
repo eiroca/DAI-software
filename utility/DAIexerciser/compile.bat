@@ -6,6 +6,7 @@ retroassembler -x %target%.8080.asm
 move %target%.prg %target%.sbin
 dtcli %target%.sbin -c DAI_(basic)
 dtcli %target%.dai -c wav
+del metadata.json
 del %target%.sbin
 del %DIST%%target%.dai
 del %DIST%%target%.wav
