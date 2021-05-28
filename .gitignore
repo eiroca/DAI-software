@@ -2,3 +2,5 @@
 *.sbin
 *.dai
 *.wav
+**/Thumbs.db
+**/bak/*.zx*
