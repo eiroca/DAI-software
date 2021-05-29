@@ -25,3 +25,8 @@ cd DAIexerciser
 call compile.bat
 cd ..
 cd ..
+cd development
+cd miniGraph
+call compile.bat
+cd ..
+cd ..

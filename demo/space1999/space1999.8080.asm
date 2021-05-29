@@ -23,6 +23,7 @@
 .include "../../lib/DAI/libDAI.8080.asm"
 .include "../../lib/DAI/libDAIext.8080.asm"
 .include "../../lib/libApp.8080.asm"
+.include "../../lib/libZx.8080.asm"
 
 .code
 	.org	PROGSTART
@@ -64,7 +65,7 @@
 
 Main	App_Init()
 	Text_Home()
-	DAI_mode(6*2)
+	DAI_mode(10)
 	ClockInterrupt_Init()
 
 	; Blank Screen

@@ -33,14 +33,18 @@ VRAM_END	.equ	$BFFF
 .lib
 	IS_DAI = 1
 
+.macro DAI_ROMCall(i, f)
+	rst	i
+	.byte	f
+.endmacro
+
 ; Exit to BASIC
 .macro DAI_mode(md=$FF)
 .if md == $00
 	md = $FF
 .endif
 	mvi	A, md
-	rst	5
-	.byte	$18
+	DAI_ROMCall(5, $18)
 .endmacro
 
 .macro DAI_printC(ch)

@@ -20,7 +20,6 @@
 	.include "libUtils.8080.asm"
 	.include "libDebug.8080.asm"
 	.include "libText.8080.asm"
-	.include "libZx.8080.asm"
 
 .lib
 
