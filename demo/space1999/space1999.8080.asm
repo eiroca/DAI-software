@@ -69,21 +69,28 @@ Main	App_Init()
 	ClockInterrupt_Init()
 
 	; Blank Screen
+	VSync()
 	zxCopy(Blank_E - 1)
 
 Intro
+	VSync()
 	zxCopy(Frame01E - 1, $6323 + 14444)
 	wait(15)
+	VSync()
 	zxCopy(Frame02E - 1, $6323 + 17588)
 	wait(15)
+	VSync()
 	zxCopy(Frame03E - 1, $6323 + 17588)
 	wait(15)
+	VSync()
 	zxCopy(Frame04E - 1, $6323 + 23646)
 	wait(50)
 
 Separazione
 	; Blank Screen
+	VSync()
 	zxCopy(Blank_E - 1)
+	VSync()
 	zxCopy(FrameSepE - 1)
 	mvi	C, $0F
 	;Separazione...
@@ -103,7 +110,9 @@ Separazione
 
 Closing
 	; Blank Screen
+	VSync()
 	zxCopy(Blank_E - 1)
+	VSync()
 	zxCopy(FrameFinE - 1)
 
 EndDemo	ClockInterrupt_Done()
@@ -152,6 +161,14 @@ EndDemo	ClockInterrupt_Done()
 	nop
 	jmp	@Loop
 @Done
+.endfunction
+
+.function VSync()
+	xra	A
+	sta	ClockInt
+@Loop	lda	ClockInt
+	ora 	A
+	jz	@Loop
 .endfunction
 
 ; Called every 1/50 of second
